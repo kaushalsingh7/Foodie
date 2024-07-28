@@ -65,8 +65,7 @@ const Cart = () => {
           activeCart ? setActiveCart(false) : setActiveCart(true)
         }
         className={`rounded-full bg-wite shadow-md text-5xl p-3 fixed bottom-9 right-4
-        ${totalQty > 0 && "animate-bounce delay-500 transistion-all"}
-        
+        ${totalQty > 0 && "animate-bounce delay-500 transistion-all"}      
         `}
       />
     </>
