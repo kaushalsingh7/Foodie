@@ -63,16 +63,25 @@ const Cart = () => {
           </button>
         </div>
       </div>
-      <FaShoppingCart
-        onClick={() =>
-          activeCart ? setActiveCart(false) : setActiveCart(true)
-        }
-        className={`rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-9 right-4
-        ${totalQty > 0 && "animate-bounce delay-500 transistion-all"}      
-        `}
-      />
+      {!activeCart && (
+        <FaShoppingCart
+          onClick={() => setActiveCart(true)}
+          className={`rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-4 right-4
+          ${totalQty > 0 ? "animate-bounce delay-500 transition-all" : ""}`}
+        />
+      )}
     </>
   );
 };
 
 export default Cart;
+{
+  /* <FaShoppingCart
+onClick={() =>
+  activeCart ? setActiveCart(false) : setActiveCart(true)
+}
+className={`rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-9 right-4
+${totalQty > 0 && "animate-bounce delay-500 transistion-all"}      
+`}
+/> */
+}
