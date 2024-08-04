@@ -4,9 +4,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import ItemCard from "./ItemCard";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { removeFromCart } from "../redux/slices/CartSlice";
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activeCart, setActiveCart] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
   const totalQty = cartItems.reduce((totalQty, item) => totalQty + item.qty, 0);
@@ -53,6 +55,7 @@ const Cart = () => {
           </h3>
           <hr className="w-[95vw] lg:w-[18vw]" />
           <button
+            onClick={() => navigate("/success")}
             className="bg-green-500 font-bold-300 px-3
            text-white py-2 rounded-lg w-[90vw] lg:w-[18vw]"
           >
@@ -60,14 +63,21 @@ const Cart = () => {
           </button>
         </div>
       </div>
-      <FaShoppingCart
-        onClick={() =>
-          activeCart ? setActiveCart(false) : setActiveCart(true)
-        }
-        className={`rounded-full bg-wite shadow-md text-5xl p-3 fixed bottom-9 right-4
+      {/* <FaShoppingCart
+        // onClick={() =>
+        //   activeCart ? setActiveCart(false) : setActiveCart(true)
+        // }
+        onClick={() => setActiveCart(!activeCart)}
+        className={`rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-4 right-4
         ${totalQty > 0 && "animate-bounce delay-500 transistion-all"}      
-        `}
-      />
+        `} */}
+      {!activeCart && (
+        <FaShoppingCart
+          onClick={() => setActiveCart(true)}
+          className={`rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-4 right-4
+          ${totalQty > 0 ? "animate-bounce delay-500 transition-all" : ""}`}
+        />
+      )}
     </>
   );
 };
